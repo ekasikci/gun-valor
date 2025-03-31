@@ -24,15 +24,18 @@ public class Weapon : MonoBehaviour
         weapon = GetComponent<Transform>();
     }
 
-    void Update()
+    public void Shoot()
     {
-        if (Input.GetButton("Fire1") && canShoot)
-        {
-            StartCoroutine(Shoot());
-        }
+        if (canShoot)
+            StartCoroutine(shootRoutine());
     }
 
-    private IEnumerator Shoot()
+    void Update()
+    {
+
+    }
+
+    private IEnumerator shootRoutine()
     {
         canShoot = false;
 

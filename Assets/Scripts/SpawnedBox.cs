@@ -33,13 +33,13 @@ public class SpawnedBox : MonoBehaviour
                 switch (randomIndex)
                 {
                     case 0:
-                        weapon.Initialize("Pistol", 10, 10, 3f);
+                        weapon.Initialize("Pistol", 5, 10, 3f);
                         break;
                     case 1:
                         weapon.Initialize("Shotgun", 50, 5, 1f);
                         break;
                     case 2:
-                        weapon.Initialize("Machine Gun", 20, 40, 10f);
+                        weapon.Initialize("Machine Gun", 10, 20, 10f);
                         break;
                 }
                 player.weapon = weaponObject;
