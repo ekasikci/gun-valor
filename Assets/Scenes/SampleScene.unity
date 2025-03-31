@@ -580,6 +580,14 @@ PrefabInstance:
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6912506676350606368, guid: 6db63484eaef4ac4c912cbf97354edff, type: 3}
+      propertyPath: fireAction
+      value: 
+      objectReference: {fileID: 5757953510588647624, guid: 0e824007925d1894cb4eacd90d27940a, type: 3}
+    - target: {fileID: 6912506676350606368, guid: 6db63484eaef4ac4c912cbf97354edff, type: 3}
+      propertyPath: moveAction
+      value: 
+      objectReference: {fileID: 1082170695755935324, guid: 0e824007925d1894cb4eacd90d27940a, type: 3}
+    - target: {fileID: 6912506676350606368, guid: 6db63484eaef4ac4c912cbf97354edff, type: 3}
       propertyPath: playerNumber
       value: 1
       objectReference: {fileID: 0}

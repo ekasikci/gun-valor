@@ -1,6 +1,7 @@
 using UnityEngine;
 using System.Collections;
 using Unity.VisualScripting;
+using UnityEngine.InputSystem;
 
 public class Player : MonoBehaviour
 {
@@ -19,7 +20,12 @@ public class Player : MonoBehaviour
 
     public float health = 1000;
     public float armor = 1f;
-    private bool flip = false;
+    private bool flip;
+
+    public InputActionReference moveAction;
+    public InputActionReference fireAction;
+
+    private Vector2 moveInput;
 
 
 
@@ -58,60 +64,38 @@ public class Player : MonoBehaviour
         body = GetComponent<Rigidbody2D>();
         animator = GetComponent<Animator>();
 
-        if(playerNumber % 2 != 0)
-        {
+        if(transform.localEulerAngles.y == 180)
             flip = true;
-        }
-
-        if (playerNumber == 0)
-        {
-            playerInput[0] = "Horizontal";
-            playerInput[1] = "Vertical";
-            playerInput[2] = "Jump";
-            playerInput[3] = "Fire";
-        }
         else
-        {
-            playerInput[0] = "Horizontal" + playerNumber;
-            playerInput[1] = "Vertical" + playerNumber;
-            playerInput[2] = "Jump" + playerNumber;
-            playerInput[3] = "Fire" + playerNumber;
-        }
+            flip = false;
     }
 
     private void Update()
     {
-        float horizontalInput = Input.GetAxis(playerInput[0]);
-        body.linearVelocity = new Vector2(horizontalInput * speed, body.linearVelocity.y);
+        moveInput = moveAction.action.ReadValue<Vector2>();
+
+        body.linearVelocity = new Vector2(moveInput.x * speed, body.linearVelocity.y);
 
         if (!flip)
         {
-            if (horizontalInput > 0 && !isFacingRight)
+            if (moveInput.x > 0 && !isFacingRight)
                 Flip();
-            else if (horizontalInput < 0 && isFacingRight)
+            else if (moveInput.x < 0 && isFacingRight)
                 Flip();
         }
         else
         {
-            if (horizontalInput > 0 && isFacingRight)
+            if (moveInput.x > 0 && isFacingRight)
                 Flip();
-            else if (horizontalInput < 0 && !isFacingRight)
+            else if (moveInput.x < 0 && !isFacingRight)
                 Flip();
         }
 
-
-
-
-        if (Input.GetButtonDown(playerInput[2]) && jumpCount < maxJumps)
+        if (moveInput.y > 0.5f && jumpCount < maxJumps)
             Jump();
 
-        animator.SetBool("isRunning", horizontalInput != 0);
+        animator.SetBool("isRunning", moveInput.x != 0);
         animator.SetBool("isGrounded", isGrounded);
-
-        if(Input.GetButtonDown(playerInput[3]))
-        {
-            weapon.GetComponent<Weapon>().Shoot();
-        }
     }
 
     private void Jump()
@@ -130,6 +114,22 @@ public class Player : MonoBehaviour
             jumpCount = 0;
         }
     }
+
+    private void OnEnable()
+    {
+        fireAction.action.started += Fire;
+    }
+
+    private void OnDisable()
+    {
+        fireAction.action.started -= Fire;
+    }
+
+    private void Fire(InputAction.CallbackContext context)
+    {
+        weapon.GetComponent<Weapon>().Shoot();
+    }
+
 
     private void Flip()
     {
