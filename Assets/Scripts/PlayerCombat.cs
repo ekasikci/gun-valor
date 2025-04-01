@@ -49,6 +49,7 @@ public class PlayerCombat : MonoBehaviour
         health -= damageToTake;
         if (health <= 0)
         {
+            // TODO;
             // Die();
         }
 
