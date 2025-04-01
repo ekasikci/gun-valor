@@ -101,3 +101,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletPrefab: {fileID: 4890426867452228398, guid: 7ce70bd9ccef54d4ebd1d3c55318ec89, type: 3}
+  damage: 0
+  shootSound: {fileID: 8300000, guid: 1b766da7cc2d648aa84e36cb5fe8abcb, type: 3}

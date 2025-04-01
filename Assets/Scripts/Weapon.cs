@@ -10,6 +10,8 @@ public class Weapon : MonoBehaviour
     private float speed;
     private float fireRate;
     private bool canShoot = true;
+    private AudioSource audioSource;
+    [SerializeField] private AudioClip shootSound;
 
     public void Initialize(string weaponName, int damage, float speed, float fireRate)
     {
@@ -22,6 +24,11 @@ public class Weapon : MonoBehaviour
     void Awake()
     {
         weapon = GetComponent<Transform>();
+    }
+
+    private void Start()
+    {
+        audioSource = GetComponentInParent<AudioSource>();
     }
 
     public void Shoot()
@@ -52,6 +59,7 @@ public class Weapon : MonoBehaviour
                 Physics2D.IgnoreCollision(playerCollider, bulletCollider);
             }
             bullet.Initialize(damage, speed);
+            audioSource.PlayOneShot(shootSound);
         }
 
         yield return new WaitForSeconds(1f / fireRate);
