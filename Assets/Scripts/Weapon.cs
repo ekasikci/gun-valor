@@ -41,8 +41,16 @@ public class Weapon : MonoBehaviour
 
         GameObject bulletObject = Instantiate(bulletPrefab, weapon.position, weapon.rotation);
         Bullet bullet = bulletObject.GetComponent<Bullet>();
+
+        Collider2D playerCollider = GetComponentInParent<Collider2D>();
+        Collider2D bulletCollider = bullet.GetComponent<Collider2D>();
+
         if (bullet != null)
         {
+            if (playerCollider != null && bulletCollider != null)
+            {
+                Physics2D.IgnoreCollision(playerCollider, bulletCollider);
+            }
             bullet.Initialize(damage, speed);
         }
 

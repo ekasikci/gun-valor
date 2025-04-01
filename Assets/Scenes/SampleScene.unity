@@ -385,7 +385,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   numberOfPlayers: 2
-  playerPrefab: {fileID: 8930763400335844463, guid: 6db63484eaef4ac4c912cbf97354edff, type: 3}
+  playerPrefab: {fileID: 4929614057223673451, guid: 6db63484eaef4ac4c912cbf97354edff, type: 3}
   spawnPoints:
   - {fileID: 756193760}
   - {fileID: 788136155}

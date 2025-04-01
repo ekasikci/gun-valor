@@ -16,6 +16,11 @@ public class PlayerCombat : MonoBehaviour
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
+        weapon = transform.Find("Weapon").gameObject;
+        if (weapon == null)
+        {
+            Debug.LogError("Weapon not found in children of Player.");
+        }
     }
 
     private void Start()
@@ -31,7 +36,6 @@ public class PlayerCombat : MonoBehaviour
         }
 
         string fireActionName = "Fire" + playerNumber;
-
         var fireAction = inputAsset.FindAction(fireActionName);
         if (fireAction == null)
         {
@@ -40,6 +44,20 @@ public class PlayerCombat : MonoBehaviour
         else
         {
             fireRef = InputActionReference.Create(fireAction);
+        }
+
+        Debug.Log("FireActionName: " + fireActionName);
+        Debug.Log("FireAction: " + fireAction);
+        Debug.Log("FireRef: " + fireRef);
+
+        if (fireRef != null && fireRef.action != null)
+        {
+            Debug.Log("Fire");
+            fireRef.action.started += Fire;
+        }
+        else
+        {
+            Debug.LogWarning("fireRef or fireRef.action is null on OnEnable.");
         }
     }
 
@@ -71,11 +89,6 @@ public class PlayerCombat : MonoBehaviour
             elapsedTime += Time.deltaTime;
             yield return null;
         }
-    }
-
-    private void OnEnable()
-    {
-        fireRef.action.started += Fire;
     }
 
     private void OnDisable()
