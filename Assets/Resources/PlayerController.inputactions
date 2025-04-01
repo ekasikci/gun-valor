@@ -6,7 +6,7 @@
             "id": "8ae4346a-a891-4eee-bb72-e8882a1914b9",
             "actions": [
                 {
-                    "name": "Movement",
+                    "name": "Movement1",
                     "type": "PassThrough",
                     "id": "45523d5e-7d4b-4e65-ba7f-4c5b3ebec840",
                     "expectedControlType": "Vector2",
@@ -15,7 +15,7 @@
                     "initialStateCheck": false
                 },
                 {
-                    "name": "Fire",
+                    "name": "Fire1",
                     "type": "Button",
                     "id": "828cadda-9322-4874-a08f-e836fc304b42",
                     "expectedControlType": "",
@@ -25,12 +25,12 @@
                 },
                 {
                     "name": "Movement2",
-                    "type": "Value",
+                    "type": "PassThrough",
                     "id": "2d550d64-2a82-4d1c-8a35-baed2aa268d8",
-                    "expectedControlType": "",
+                    "expectedControlType": "Vector2",
                     "processors": "",
                     "interactions": "",
-                    "initialStateCheck": true
+                    "initialStateCheck": false
                 },
                 {
                     "name": "Fire2",
@@ -50,7 +50,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Movement1",
                     "isComposite": true,
                     "isPartOfComposite": false
                 },
@@ -61,7 +61,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Movement1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -72,7 +72,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Movement1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -83,7 +83,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Movement1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -94,7 +94,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Movement",
+                    "action": "Movement1",
                     "isComposite": false,
                     "isPartOfComposite": true
                 },
@@ -105,7 +105,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "Fire1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },
@@ -116,7 +116,7 @@
                     "interactions": "",
                     "processors": "",
                     "groups": "",
-                    "action": "Fire",
+                    "action": "Fire1",
                     "isComposite": false,
                     "isPartOfComposite": false
                 },

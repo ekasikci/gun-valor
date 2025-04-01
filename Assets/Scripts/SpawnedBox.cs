@@ -6,7 +6,7 @@ public class SpawnedBox : MonoBehaviour
 
     private void OnCollisionEnter2D(Collision2D collision)
     {
-        Player player = collision.gameObject.GetComponent<Player>();
+        PlayerCombat player = collision.gameObject.GetComponent<PlayerCombat>();
         if (player != null)
         {
             Destroy(gameObject);

@@ -114,9 +114,11 @@ GameObject:
   - component: {fileID: 17202299248134109}
   - component: {fileID: 999070716974036911}
   - component: {fileID: 9000420064334943229}
-  - component: {fileID: 6912506676350606368}
   - component: {fileID: 8534341038707504882}
   - component: {fileID: 4455764262361914295}
+  - component: {fileID: 5887472144452388027}
+  - component: {fileID: 508172628758623470}
+  - component: {fileID: 3223670492018419238}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -268,26 +270,6 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 4
---- !u!114 &6912506676350606368
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8930763400335844463}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 969d63b004d5e204892d396e87026b22, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 2
-  jumpForce: 3
-  playerNumber: 0
-  weapon: {fileID: 6408367783784482381}
-  health: 1000
-  armor: 0.1
-  moveAction: {fileID: 8022858362179075962, guid: 0e824007925d1894cb4eacd90d27940a, type: 3}
-  fireAction: {fileID: -8993332623459384489, guid: 0e824007925d1894cb4eacd90d27940a, type: 3}
 --- !u!95 &8534341038707504882
 Animator:
   serializedVersion: 7
@@ -340,3 +322,47 @@ MonoBehaviour:
   m_DefaultActionMap: Gameplay
   m_SplitScreenIndex: -1
   m_Camera: {fileID: 0}
+--- !u!114 &5887472144452388027
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930763400335844463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 55b4be6dc93fdd844adf3029ab2f89c0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireAction: {fileID: -8993332623459384489, guid: 0e824007925d1894cb4eacd90d27940a, type: 3}
+  health: 1000
+  armor: 1
+  weapon: {fileID: 0}
+--- !u!114 &508172628758623470
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930763400335844463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 969d63b004d5e204892d396e87026b22, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  speed: 2
+  jumpForce: 3
+  moveAction: {fileID: 0}
+--- !u!114 &3223670492018419238
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8930763400335844463}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba51e766f87aa304fb7750aa565aab0b, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerNumber: 0

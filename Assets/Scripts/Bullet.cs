@@ -25,7 +25,7 @@ public class Bullet : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        Player player = collision.GetComponent<Player>();
+        PlayerCombat player = collision.GetComponent<PlayerCombat>();
         if (player != null)
         {
             Vector2 bulletForce = rb.linearVelocity.normalized;
