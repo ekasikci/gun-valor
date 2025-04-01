@@ -29,6 +29,7 @@ public class Bullet : MonoBehaviour
         if (player != null)
         {
             Vector2 bulletForce = rb.linearVelocity.normalized;
+            Debug.Log("Bullet force: " + bulletForce);
             player.TakeDamage(damage, bulletForce);
         }
         Destroy(gameObject);

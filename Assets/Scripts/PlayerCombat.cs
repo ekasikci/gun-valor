@@ -12,7 +12,8 @@ public class PlayerCombat : MonoBehaviour
     private int FORCE_MULTIPLIER = 100;
     private int playerNumber;
     public GameObject weapon;
-
+    private Coroutine fireCoroutine;
+    private float FASTEST_FIRE_RATE = 0.01f;
     private void Awake()
     {
         body = GetComponent<Rigidbody2D>();
@@ -52,8 +53,8 @@ public class PlayerCombat : MonoBehaviour
 
         if (fireRef != null && fireRef.action != null)
         {
-            Debug.Log("Fire");
-            fireRef.action.started += Fire;
+            fireRef.action.performed += StartFiring;
+            fireRef.action.canceled += StopFiring;
         }
         else
         {
@@ -67,7 +68,6 @@ public class PlayerCombat : MonoBehaviour
         health -= damageToTake;
         if (health <= 0)
         {
-            // TODO;
             // Die();
         }
 
@@ -75,6 +75,8 @@ public class PlayerCombat : MonoBehaviour
         float recoilForce = damage / armor;
         Vector2 recoil = bulletForce.normalized * recoilForce;
         recoil *= FORCE_MULTIPLIER;
+
+        Debug.Log("Recoil: " + recoil);
 
         // Start knockback coroutine
         StartCoroutine(ApplyKnockbackOverTime(recoil, 0.3f)); // 0.3s duration
@@ -93,12 +95,37 @@ public class PlayerCombat : MonoBehaviour
 
     private void OnDisable()
     {
-        fireRef.action.started -= Fire;
+        if (fireRef != null && fireRef.action != null)
+        {
+            fireRef.action.performed -= StartFiring;
+            fireRef.action.canceled -= StopFiring;
+        }
     }
 
-    private void Fire(InputAction.CallbackContext context)
+    private void StartFiring(InputAction.CallbackContext context)
     {
-        weapon.GetComponent<Weapon>().Shoot();
+        if (fireCoroutine == null)
+        {
+            fireCoroutine = StartCoroutine(FireContinuously());
+        }
+    }
+
+    private void StopFiring(InputAction.CallbackContext context)
+    {
+        if (fireCoroutine != null)
+        {
+            StopCoroutine(fireCoroutine);
+            fireCoroutine = null;
+        }
+    }
+
+    private IEnumerator FireContinuously()
+    {
+        while (true)
+        {
+            weapon.GetComponent<Weapon>().Shoot();
+            yield return new WaitForSeconds(FASTEST_FIRE_RATE);
+        }
     }
 
 }
