@@ -7,8 +7,10 @@ public class SpawnedBox : MonoBehaviour
     private void OnCollisionEnter2D(Collision2D collision)
     {
         PlayerCombat player = collision.gameObject.GetComponent<PlayerCombat>();
+
         if (player != null)
         {
+            Debug.Log("Player collided with the box");
             Destroy(gameObject);
 
             Vector3 weaponPosition = Vector3.zero;
@@ -44,6 +46,15 @@ public class SpawnedBox : MonoBehaviour
                 }
                 player.weapon = weaponObject;
             }
+        }
+    }
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        Bullet bullet = collision.GetComponent<Bullet>();
+        if (bullet != null)
+        {
+            Debug.Log("Bullet collided with the box");
+            Destroy(gameObject);
         }
     }
 }

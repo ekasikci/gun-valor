@@ -1,6 +1,4 @@
 using UnityEngine;
-using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
@@ -13,7 +11,7 @@ public class PlayerController : MonoBehaviour
     private bool isGrounded;
     private bool isFacingRight = true;
     private int jumpCount = 0;
-    private int maxJumps = 2;
+    private const int maxJumps = 2;
     private bool flip;
     private int playerNumber;
     private InputActionReference movementRef;
@@ -61,44 +59,47 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        moveInput = movementRef.action.ReadValue<Vector2>();
-
-        body.linearVelocity = new Vector2(moveInput.x * speed, body.linearVelocity.y);
-        if (moveInput.x != 0 && isGrounded && !audioSource.isPlaying)
+        if (GameManager.isGameOn)
         {
-            audioSource.PlayOneShot(walkSound);
+            moveInput = movementRef.action.ReadValue<Vector2>();
+
+            body.linearVelocity = new Vector2(moveInput.x * speed, body.linearVelocity.y);
+            if (moveInput.x != 0 && isGrounded && !audioSource.isPlaying)
+            {
+                audioSource.PlayOneShot(walkSound);
+            }
+
+            if (!flip)
+            {
+                if (moveInput.x > 0 && !isFacingRight)
+                    Flip();
+                else if (moveInput.x < 0 && isFacingRight)
+                    Flip();
+            }
+            else
+            {
+                if (moveInput.x > 0 && isFacingRight)
+                    Flip();
+                else if (moveInput.x < 0 && !isFacingRight)
+                    Flip();
+            }
+
+
+            if (moveInput.y > 0 && jumpCount < maxJumps && jumpButtonReleased)
+            {
+                Jump();
+                jumpButtonReleased = false; // Set the flag to false after jumping
+            }
+
+            if (moveInput.y <= 0)
+            {
+                jumpButtonReleased = true; // Reset the flag when the jump button is released
+            }
+
+
+            animator.SetBool("isRunning", moveInput.x != 0);
+            animator.SetBool("isGrounded", isGrounded);
         }
-
-        if (!flip)
-        {
-            if (moveInput.x > 0 && !isFacingRight)
-                Flip();
-            else if (moveInput.x < 0 && isFacingRight)
-                Flip();
-        }
-        else
-        {
-            if (moveInput.x > 0 && isFacingRight)
-                Flip();
-            else if (moveInput.x < 0 && !isFacingRight)
-                Flip();
-        }
-
-
-        if (moveInput.y > 0 && jumpCount < maxJumps && jumpButtonReleased)
-        {
-            Jump();
-            jumpButtonReleased = false; // Set the flag to false after jumping
-        }
-
-        if (moveInput.y <= 0)
-        {
-            jumpButtonReleased = true; // Reset the flag when the jump button is released
-        }
-
-
-        animator.SetBool("isRunning", moveInput.x != 0);
-        animator.SetBool("isGrounded", isGrounded);
     }
 
     private void Jump()

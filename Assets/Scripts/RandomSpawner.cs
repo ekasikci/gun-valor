@@ -5,8 +5,8 @@ public class RandomSpawner : MonoBehaviour
 {
 
     public GameObject prefab;
-    public float spawnRateMin = 0.5f;
-    public float spawnRateMax = 2f;
+    public float spawnRateMin = 1f;
+    public float spawnRateMax = 5f;
     public float spawnRadius = 5f;
     public float minSpeed = 1f;
     public float maxSpeed = 5f;
@@ -15,7 +15,7 @@ public class RandomSpawner : MonoBehaviour
 
     private IEnumerator SpawnObjects()
     {
-        while (true)
+        while (GameManager.isGameOn)
         {
             // Randomize the spawn rate
             float spawnRate = Random.Range(spawnRateMin, spawnRateMax);

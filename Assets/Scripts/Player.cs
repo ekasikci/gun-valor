@@ -3,6 +3,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public int playerNumber;
+    public int teamNumber;
     private void Awake()
     {
     }
