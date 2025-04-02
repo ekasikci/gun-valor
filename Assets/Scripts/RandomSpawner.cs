@@ -5,12 +5,12 @@ public class RandomSpawner : MonoBehaviour
 {
 
     public GameObject prefab;
-    public float spawnRateMin = 1f;
-    public float spawnRateMax = 5f;
-    public float spawnRadius = 5f;
-    public float minSpeed = 1f;
-    public float maxSpeed = 5f;
-    public float spawnHeight = 10f;
+    private float spawnRateMin = 1f;
+    private float spawnRateMax = 5f;
+    private float spawnRadius = 2f;
+    private float minSpeed = 1f;
+    private float maxSpeed = 5f;
+    private float spawnHeight = 10f;
 
 
     private IEnumerator SpawnObjects()
@@ -21,9 +21,10 @@ public class RandomSpawner : MonoBehaviour
             float spawnRate = Random.Range(spawnRateMin, spawnRateMax);
             yield return new WaitForSeconds(spawnRate);
 
+
             // Randomize the spawn position within the radius
             Vector2 spawnPosition = new Vector2(
-                Random.Range(-spawnRadius, spawnRadius),
+                Random.Range(transform.position.x - spawnRadius, transform.position.x + spawnRadius),
                 spawnHeight
             );
 

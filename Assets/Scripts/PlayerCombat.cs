@@ -9,7 +9,7 @@ public class PlayerCombat : MonoBehaviour
     private InputActionReference fireRef;
     private Rigidbody2D body;
     public float armor = 1f;
-    private int FORCE_MULTIPLIER = 100;
+    private int FORCE_MULTIPLIER = 800;
     private int playerNumber;
     public GameObject weapon;
     private Coroutine fireCoroutine;
@@ -103,7 +103,7 @@ public class PlayerCombat : MonoBehaviour
         recoil *= FORCE_MULTIPLIER;
 
         // Start knockback coroutine
-        StartCoroutine(ApplyKnockbackOverTime(recoil, 0.3f)); // 0.3s duration
+        StartCoroutine(ApplyKnockbackOverTime(recoil, 0.125f)); 
     }
 
     IEnumerator ApplyKnockbackOverTime(Vector2 force, float duration)
