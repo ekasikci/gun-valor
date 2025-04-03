@@ -15,7 +15,7 @@ public class RandomSpawner : MonoBehaviour
 
     private IEnumerator SpawnObjects()
     {
-        while (GameManager.isGameOn)
+        while (GameManager.Instance.isGameOn)
         {
             // Randomize the spawn rate
             float spawnRate = Random.Range(spawnRateMin, spawnRateMax);

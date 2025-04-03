@@ -90,7 +90,7 @@ public class PlayerCombat : MonoBehaviour
         {
             GameManager.Instance.updateScoreTable(playerNumber);
 
-            if (GameManager.isGameOn)
+            if (GameManager.Instance.isGameOn)
             {
                 reSpawn();
                 health = PLAYER_HEALTH;
@@ -128,7 +128,7 @@ public class PlayerCombat : MonoBehaviour
 
     private void StartFiring(InputAction.CallbackContext context)
     {
-        if (fireCoroutine == null && GameManager.isGameOn)
+        if (fireCoroutine == null && GameManager.Instance.isGameOn)
         {
             fireCoroutine = StartCoroutine(FireContinuously());
         }

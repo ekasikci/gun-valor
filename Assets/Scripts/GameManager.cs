@@ -16,8 +16,9 @@ public class GameManager : MonoBehaviour
     private static int team2Score = 0;
     public static bool isTeam1 = true;
     private const int maxScore = 1;
-    public static bool isGameOn = true;
+    public bool isGameOn = true;
     [SerializeField] private Button restartButton;
+    [SerializeField] private Button menuButton;
 
 
     private void Awake()
@@ -54,6 +55,7 @@ public class GameManager : MonoBehaviour
             gameOverText.gameObject.SetActive(true);
             scoreTable.text = team1Score > team2Score ? scoreTable.text = "Team 1 Wins!" : scoreTable.text = "Team 2 Wins!";
             restartButton.gameObject.SetActive(true);
+            menuButton.gameObject.SetActive(true);
 
         }
 
@@ -88,7 +90,13 @@ public class GameManager : MonoBehaviour
     public void RestartGame()
     {
         Destroy(gameObject);
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
         isGameOn = true;
+    }
+
+    public void GoToMenu()
+    {
+        Destroy(gameObject);
+        SceneManager.LoadScene("Menu");
     }
 }

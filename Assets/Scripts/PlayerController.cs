@@ -59,7 +59,7 @@ public class PlayerController : MonoBehaviour
 
     private void Update()
     {
-        if (GameManager.isGameOn)
+        if (GameManager.Instance.isGameOn)
         {
             moveInput = movementRef.action.ReadValue<Vector2>();
 
